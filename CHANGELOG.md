@@ -1,3 +1,13 @@
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/hypeJunction/Elgg-groups_invite/compare/1.0.0...v1.0.1) (2016-01-13)
+
+
+### Bug Fixes
+
+* **notifications:** fix outgoing notification sender ([14e712e](https://github.com/hypeJunction/Elgg-groups_invite/commit/14e712e))
+
+
+
 <a name="1.0.0"></a>
 # 1.0.0 (2015-12-23)
 
