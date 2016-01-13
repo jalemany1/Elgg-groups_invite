@@ -123,7 +123,7 @@ foreach ($invitee_guids as $invitee_guid) {
 
 	$body = elgg_echo('groups:invite:body', array(
 		$invitee->name,
-		$logged_in_user->name,
+		$inviter->name,
 		$group->name,
 		$url,
 			), $invitee->language);
@@ -133,7 +133,7 @@ foreach ($invitee_guids as $invitee_guid) {
 		'object' => $group,
 	];
 
-	$result = notify_user($invitee->getGUID(), $group->owner_guid, $subject, $body, $params);
+	$result = notify_user($invitee->getGUID(), $inviter->guid, $subject, $body, $params);
 	if ($result) {
 		$invited++;
 	} else {
