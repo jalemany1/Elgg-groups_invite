@@ -1,3 +1,13 @@
+<a name="1.1.3"></a>
+## [1.1.3](https://github.com/hypeJunction/Elgg-groups_invite/compare/1.1.2...v1.1.3) (2016-01-30)
+
+
+### Bug Fixes
+
+* **typo:** fix typo in function name ([f7f47e2](https://github.com/hypeJunction/Elgg-groups_invite/commit/f7f47e2))
+
+
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/hypeJunction/Elgg-groups_invite/compare/1.1.1...v1.1.2) (2016-01-30)
 
