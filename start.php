@@ -23,6 +23,10 @@ function groups_invite_init() {
 	elgg_register_event_handler('create', 'user', 'groups_invite_user_created_event');
 
 	elgg_extend_view('groups/profile/layout', 'groups/profile/buttons/invite');
+
+	elgg_register_plugin_hook_handler('route', 'groups', 'groups_invite_router');
+
+	elgg_register_plugin_hook_handler('get_templates', 'notifications', 'groups_invite_add_custom_templates');
 }
 
 /**
@@ -122,6 +126,63 @@ function groups_invite_user_created_event($event, $type, $user) {
 	}
 
 	$group_invite->delete();
-	
+
 	elgg_set_ignore_access($ia);
+}
+
+/**
+ * Routes group invitation confirmation page
+ *
+ * @param string $hook   "route"
+ * @param string $type   "groups"
+ * @param array  $return Identifier and segments
+ * @param array  $params Hook params
+ * @return array
+ */
+function groups_invite_router($hook, $type, $return, $params) {
+
+	$identifier = $return['identifier'];
+	$segments = $return['segments'];
+
+	if ($identifier == 'groups' && $segments[0] == 'invitations' && $segments[1] == 'confirm') {
+		$i = (int) get_input('i');
+		$g = (int) get_input('g');
+		$hmac = elgg_get_hmac(array(
+			'i' => $i,
+			'g' => $g,
+		));
+		if (!$hmac->matchesToken(get_input('m'))) {
+			register_error(elgg_echo('groups:invite:confirm:error'));
+			forward('', '403');
+		}
+
+		$ia = elgg_set_ignore_access(true);
+		$user = get_entity($i);
+		$group = get_entity($g);
+
+		elgg_register_plugin_hook_handler('forward', 'all', 'Elgg\Values::getFalse', 9999);
+		set_input('user_guid', $user->guid);
+		set_input('group_guid', $group->guid);
+
+		action('groups/join', false);
+		elgg_unregister_plugin_hook_handler('forward', 'all', 'Elgg\Values::getFalse');
+		elgg_set_ignore_access($ia);
+
+		forward('');
+	}
+}
+
+/**
+ * Add instant notificaiton actions to the editable templates
+ *
+ * @param string $hook   "get_templates"
+ * @param string $type   "notifications"
+ * @param string $return Template names
+ * @param array  $params Hook params
+ * @return array
+ */
+function groups_invite_add_custom_templates($hook, $type, $return, $params) {
+
+	$return[] = "groups_invite_user";
+	return $return;
 }

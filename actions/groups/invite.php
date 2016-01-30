@@ -114,14 +114,31 @@ foreach ($invitee_guids as $invitee_guid) {
 
 	add_entity_relationship($group->guid, 'invited', $invitee->guid);
 
-	$url = elgg_normalize_url("groups/invitations/$invitee->username");
+	$hmac = elgg_build_hmac(array(
+		'i' => (int) $invitee->guid,
+		'g' => (int) $group->guid,
+	));
+	$url = elgg_http_add_url_query_elements(elgg_normalize_url("groups/invitations/confirm"), array(
+		'i' => $invitee->guid,
+		'g' => $group->guid,
+		'm' => $hmac->getToken(),
+	));
 
-	$subject = elgg_echo('groups:invite:subject', array(
-		$invitee->name,
-		$group->name
+	$invitee_link = elgg_view('output/url', array(
+		'text' => $inviter->getDisplayName(),
+		'href' => $inviter->getURL(),
+	));
+	$group_link = elgg_view('output/url', array(
+		'text' => $group->getDisplayName(),
+		'href' => $group->getURL(),
+	));
+	$summary = elgg_echo('groups:invite:user:subject', array(
+		$invitee_link,
+		$group_link,
 			), $invitee->language);
+	$subject = strip_tags($summary);
 
-	$body = elgg_echo('groups:invite:body', array(
+	$body = elgg_echo('groups:invite:user:body', array(
 		$invitee->name,
 		$inviter->name,
 		$group->name,
@@ -131,6 +148,9 @@ foreach ($invitee_guids as $invitee_guid) {
 	$params = [
 		'action' => 'invite',
 		'object' => $group,
+		'summary' => $summary,
+		'template' => 'groups_invite_user',
+		'confirm_url' => $url,
 	];
 
 	$result = notify_user($invitee->getGUID(), $inviter->guid, $subject, $body, $params);

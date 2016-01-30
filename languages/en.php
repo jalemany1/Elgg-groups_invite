@@ -40,8 +40,19 @@ return [
 
 		',
 
+	'groups:invite:user:subject' => "%s invites you to join %s",
+	'groups:invite:user:body' => "Hi %s,
+
+%s invited you to join '%s'. Click below to confirm the invitation:
+
+%s",
+
 	'groups:invite:result:invited' => '%s of %s invitations were successfully sent',
 	'groups:invite:result:skipped' => '%s of %s invitations were skipped, because users have already been invited',
 	'groups:invite:result:added' => '%s of %s users were added as group members',
 	'groups:invite:result:error' => '%s of %s invitations could not be sent due to errors',
+
+	'groups:invite:confirm:error' => 'Your request can not be complete. Please login and confirm the invitation manually',
+	'notification:groups_invite_user' => 'Notification sent when a user is invited to a group',
+	
 ];
