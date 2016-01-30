@@ -1,3 +1,13 @@
+<a name="1.1.2"></a>
+## [1.1.2](https://github.com/hypeJunction/Elgg-groups_invite/compare/1.1.1...v1.1.2) (2016-01-30)
+
+
+### Bug Fixes
+
+* **notifications:** fix notification ([46fdaf3](https://github.com/hypeJunction/Elgg-groups_invite/commit/46fdaf3))
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/hypeJunction/Elgg-groups_invite/compare/1.1.0...v1.1.1) (2016-01-30)
 
