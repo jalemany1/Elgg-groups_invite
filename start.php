@@ -163,7 +163,10 @@ function groups_invite_router($hook, $type, $return, $params) {
 		elgg_register_plugin_hook_handler('forward', 'all', 'Elgg\Values::getFalse', 9999);
 		set_input('user_guid', $user->guid);
 		set_input('group_guid', $group->guid);
-
+		$ts = time();
+		$token = generate_action_token($ts);
+		set_input('__elgg_ts', $ts);
+		set_input('__elgg_token', $token);
 		action('groups/join', false);
 		elgg_unregister_plugin_hook_handler('forward', 'all', 'Elgg\Values::getFalse');
 		elgg_set_ignore_access($ia);
