@@ -147,7 +147,7 @@ function groups_invite_router($hook, $type, $return, $params) {
 	if ($identifier == 'groups' && $segments[0] == 'invitations' && $segments[1] == 'confirm') {
 		$i = (int) get_input('i');
 		$g = (int) get_input('g');
-		$hmac = elgg_get_hmac(array(
+		$hmac = elgg_build_hmac(array(
 			'i' => $i,
 			'g' => $g,
 		));
