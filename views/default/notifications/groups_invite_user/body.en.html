@@ -1,8 +1,15 @@
 <p>Dear {{recipient.name}},</p>
 <p><a href="{{sender.getURL}}">{{sender.name}} is inviting you to join <a href="{{object.getURL}}">{{object.name}}</a></p>
 
-<p>About {{object.name}}: {{& object.description }}</p>
-	
+{{#object.briefdescription}}
+	<p>About {{object.name}}: {{& object.description }}</p>
+{{/object.briefdescription}}
+{{^object.briefdescription}}
+	{{#object.description}}
+		<p>About {{object.name}}: {{& object.description }}</p>
+	{{/object.description}}
+{{/object.briefdescription}}
+
 <div itemprop="potentialAction" itemscope itemtype="http://schema.org/ConfirmAction">
     <meta itemprop="name" content="Join Now"/>
     <div itemprop="handler" itemscope itemtype="http://schema.org/HttpActionHandler">

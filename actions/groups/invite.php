@@ -150,7 +150,7 @@ foreach ($invitee_guids as $invitee_guid) {
 		'object' => $group,
 		'summary' => $summary,
 		'template' => 'groups_invite_user',
-		'confirm_url' => $url,
+		'confirm_link' => $url,
 	];
 
 	$result = notify_user($invitee->getGUID(), $inviter->guid, $subject, $body, $params);
