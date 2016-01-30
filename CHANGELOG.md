@@ -1,3 +1,13 @@
+<a name="1.1.5"></a>
+## [1.1.5](https://github.com/hypeJunction/Elgg-groups_invite/compare/1.1.4...v1.1.5) (2016-01-30)
+
+
+### Bug Fixes
+
+* **actions:** Elgg actions be damned! ([eb6c4b2](https://github.com/hypeJunction/Elgg-groups_invite/commit/eb6c4b2))
+
+
+
 <a name="1.1.4"></a>
 ## [1.1.4](https://github.com/hypeJunction/Elgg-groups_invite/compare/1.1.3...v1.1.4) (2016-01-30)
 
