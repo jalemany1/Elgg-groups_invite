@@ -32,7 +32,7 @@ function groups_invite_init() {
 /**
  * Returns a group invite object
  * 
- * @param string $email  Email address
+ * @param string $email Email address
  * @return ElggObject|false
  */
 function groups_invite_get_group_invite($email) {
@@ -82,9 +82,9 @@ function groups_invite_create_group_invite($email) {
 /**
  * Convert group invites to group invitations and friend requests
  *
- * @param string   $hook "create"
- * @param string   $type "user"
- * @param ElggUser $user User entity
+ * @param string   $event "create"
+ * @param string   $type  "user"
+ * @param ElggUser $user  User entity
  * @return void
  */
 function groups_invite_user_created_event($event, $type, $user) {
