@@ -74,7 +74,7 @@ foreach ($emails as $email) {
 	add_entity_relationship($group_invite->guid, 'invited_by', $inviter->guid);
 	add_entity_relationship($group_invite->guid, 'invited_to', $group->guid);
 
-	if (!$new || $resend) {
+	if ($new || $resend) {
 		$sent = elgg_send_email($site->email, $email, $subject, $body);
 		if ($sent) {
 			$invited++;
