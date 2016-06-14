@@ -1,3 +1,20 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/hypeJunction/Elgg-groups_invite/compare/1.1.5...v1.2.0) (2016-06-14)
+
+
+### Bug Fixes
+
+* **invites:** do not send out email invites if registration is disabled ([f15e36d](https://github.com/hypeJunction/Elgg-groups_invite/commit/f15e36d))
+* **invites:** fix email notification body ([77827ad](https://github.com/hypeJunction/Elgg-groups_invite/commit/77827ad))
+* **invites:** fix when invites are resent ([b17aab1](https://github.com/hypeJunction/Elgg-groups_invite/commit/b17aab1))
+* **invites:** friend requests are now established correctly ([eff313d](https://github.com/hypeJunction/Elgg-groups_invite/commit/eff313d))
+
+### Features
+
+* **invites:** integrate with user_invites plugin ([4f81ae6](https://github.com/hypeJunction/Elgg-groups_invite/commit/4f81ae6))
+
+
+
 <a name="1.1.5"></a>
 ## [1.1.5](https://github.com/hypeJunction/Elgg-groups_invite/compare/1.1.4...v1.1.5) (2016-01-30)
 
