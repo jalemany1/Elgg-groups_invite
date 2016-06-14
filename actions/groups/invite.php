@@ -59,6 +59,11 @@ foreach ($emails as $email) {
 		continue;
 	}
 
+	if (!elgg_get_config('allow_registration')) {
+		$error++;
+		continue;
+	}
+	
 	$new = false;
 	$group_invite = groups_invite_get_group_invite($email);
 	if (!$group_invite) {

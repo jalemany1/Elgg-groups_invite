@@ -23,7 +23,7 @@ if (elgg_get_plugin_setting('users_tab', 'groups_invite', false)) {
 	$forms .= elgg_format_element('div', ['id' => 'groups-invite-friends'], $form);
 }
 
-if (elgg_get_plugin_setting('emails_tab', 'groups_invite', false)) {
+if (elgg_get_plugin_setting('emails_tab', 'groups_invite', false) && elgg_get_config('allow_registration')) {
 	$tabs['emails'] = array(
 		'text' => elgg_echo('groups:invite:emails'),
 		'href' => '#groups-invite-emails',
