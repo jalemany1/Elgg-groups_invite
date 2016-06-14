@@ -25,25 +25,6 @@ if ($invitee_guids && !is_array($invitee_guids)) {
 
 $emails = explode(PHP_EOL, $emails);
 
-$site = elgg_get_site_entity();
-$notification_params = array(
-	'inviter' => elgg_view('output/url', array(
-		'text' => $inviter->getDisplayName(),
-		'href' => $inviter->getURL(),
-	)),
-	'group' => elgg_view('output/url', array(
-		'text' => $group->getDisplayName(),
-		'href' => $group->getURL(),
-	)),
-	'site' => elgg_view('output/url', array(
-		'text' => $site->getDisplayName(),
-		'href' => $site->getURL(),
-	)),
-	'message' => ($message) ? elgg_echo('groups:invite:notify:message', array($message)) : '',
-);
-$subject = elgg_echo('groups:invite:notify:subject', array($group->getDisplayName()));
-$body = elgg_echo('groups:invite:notify:body', $notification_params);
-
 foreach ($emails as $email) {
 	if (empty($email)) {
 		continue;
@@ -78,6 +59,31 @@ foreach ($emails as $email) {
 
 	add_entity_relationship($group_invite->guid, 'invited_by', $inviter->guid);
 	add_entity_relationship($group_invite->guid, 'invited_to', $group->guid);
+
+	$link = elgg_trigger_plugin_hook('registration_link', 'site', [
+		'email' => $email,
+		'friend_guid' => $inviter->guid,
+			], elgg_normalize_url('register'));
+
+	$site = elgg_get_site_entity();
+	$notification_params = array(
+		'inviter' => elgg_view('output/url', array(
+			'text' => $inviter->getDisplayName(),
+			'href' => $inviter->getURL(),
+		)),
+		'group' => elgg_view('output/url', array(
+			'text' => $group->getDisplayName(),
+			'href' => $group->getURL(),
+		)),
+		'site' => elgg_view('output/url', array(
+			'text' => $site->getDisplayName(),
+			'href' => $link,
+		)),
+		'message' => ($message) ? elgg_echo('groups:invite:notify:message', array($message)) : '',
+	);
+
+	$subject = elgg_echo('groups:invite:notify:subject', array($group->getDisplayName()));
+	$body = elgg_echo('groups:invite:notify:body', $notification_params);
 
 	$sent = elgg_send_email($site->email, $email, $subject, $body);
 	if ($sent) {

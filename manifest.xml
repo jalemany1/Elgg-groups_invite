@@ -38,4 +38,9 @@
 		<name>elgg_tokeninput</name>
 	</requires>
 
+	<suggests>
+		<type>plugin</type>
+		<name>users_invite</name>
+	</suggests>
+	
 </plugin_manifest>
