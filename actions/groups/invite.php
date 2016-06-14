@@ -63,7 +63,7 @@ foreach ($emails as $email) {
 		$error++;
 		continue;
 	}
-	
+
 	$new = false;
 	$group_invite = groups_invite_get_group_invite($email);
 	if (!$group_invite) {
@@ -71,18 +71,19 @@ foreach ($emails as $email) {
 		$group_invite = groups_invite_create_group_invite($email);
 	}
 
+	if (!$new && !$resend) {
+		$skipped++;
+		continue;
+	}
+
 	add_entity_relationship($group_invite->guid, 'invited_by', $inviter->guid);
 	add_entity_relationship($group_invite->guid, 'invited_to', $group->guid);
 
-	if ($new || $resend) {
-		$sent = elgg_send_email($site->email, $email, $subject, $body);
-		if ($sent) {
-			$invited++;
-		} else {
-			$error++;
-		}
+	$sent = elgg_send_email($site->email, $email, $subject, $body);
+	if ($sent) {
+		$invited++;
 	} else {
-		$skipped++;
+		$error++;
 	}
 }
 
