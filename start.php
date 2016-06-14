@@ -113,7 +113,7 @@ function groups_invite_user_created_event($event, $type, $user) {
 		// We don't want to make people friends automatically
 		// Least we can do is create a friend request, so that the new user can confirm it
 		$inviters = new ElggBatch('elgg_get_entities_from_relationship', array(
-			'types' => 'group',
+			'types' => 'user',
 			'relationship' => 'invited_by',
 			'relationship_guid' => $group_invite->guid,
 			'inverse_relationship' => false,
