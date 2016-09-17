@@ -32,7 +32,7 @@ return [
 	'groups:invite:notify:body' => '%1$s has invited you to join %2$s at %3$s.
 
 		%4$s
-		Please visit create an account by following this link:
+		Please visit the following link to create an account:
 		%5$s
 
 		You will then be able to confirm the invitation to join %2$s by visiting your invitations page.
