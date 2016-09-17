@@ -67,19 +67,11 @@ foreach ($emails as $email) {
 
 	$site = elgg_get_site_entity();
 	$notification_params = array(
-		'inviter' => elgg_view('output/url', array(
-			'text' => $inviter->getDisplayName(),
-			'href' => $inviter->getURL(),
-		)),
-		'group' => elgg_view('output/url', array(
-			'text' => $group->getDisplayName(),
-			'href' => $group->getURL(),
-		)),
-		'site' => elgg_view('output/url', array(
-			'text' => $site->getDisplayName(),
-			'href' => $link,
-		)),
+		'inviter' => $inviter->getDisplayName(),
+		'group' => $group->getDisplayName(),
+		'site' => $site->getDisplayName(),
 		'message' => ($message) ? elgg_echo('groups:invite:notify:message', array($message)) : '',
+		'link' => $link,
 	);
 
 	$subject = elgg_echo('groups:invite:notify:subject', array($group->getDisplayName()));

@@ -30,8 +30,11 @@ return [
 
 	'groups:invite:notify:subject' => 'You are invited to join %s',
 	'groups:invite:notify:body' => '%1$s has invited you to join %2$s at %3$s.
+
 		%4$s
-		Please visit the site at %3$s and create an account.
+		Please visit create an account by following this link:
+		%5$s
+
 		You will then be able to confirm the invitation to join %2$s by visiting your invitations page.
 		',
 	'groups:invite:notify:message' => '
