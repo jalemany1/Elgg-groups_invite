@@ -38,6 +38,12 @@
 		<name>elgg_tokeninput</name>
 	</requires>
 
+	<requires>
+		<type>priority</type>
+		<priority>before</priority>
+		<plugin>group_membership</plugin>
+	</requires>
+
 	<suggests>
 		<type>plugin</type>
 		<name>users_invite</name>
